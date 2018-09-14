@@ -1,0 +1,20 @@
+{
+  "name": "highcharts-cloud-chart-selector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ws",
+    "pretest": "eslint --ignore-path .gitignore ."
+  },
+  "dependencies": {},
+  "keywords": [],
+  "author": "Gert Vaartjes",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "local-web-server": "^2.6.0"
+  }
+}
