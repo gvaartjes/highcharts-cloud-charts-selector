@@ -18,6 +18,7 @@ a {
 div#container {
   display: block;
   background-color: #424242;
+  padding: 15px;
 }
 
 .chart-holder {
