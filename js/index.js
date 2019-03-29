@@ -32,15 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   * Pass a function and makes sure it runs a max number of times, or until
-   * condition is approved
-   * @param {number} counter - Give in the number the function has to check for
-   * a condition
-   * @param {Function} testFunc - The function that checks the condition,
-   * should return a boolean
-   * @param {Function} performFunc - If the condition is met, Run this function
-   * @param {number} wait - Wait the number in milliseconds
-   */
+    * Pass a function and makes sure it runs a max number of times, or until
+    * condition is approved
+    * @param {number} counter - Give in the number the function has to check for
+    * a condition
+    * @param {Function} testFunc - The function that checks the condition,
+    * should return a boolean
+    * @param {Function} performFunc - If the condition is met, Run this function
+    * @param {number} wait - Wait the number in milliseconds
+    */
   let recursiveFunctionWithTimeout = (counter, testFunc, performFunc, wait) => {
     counter--;
     setTimeout(() => {
@@ -53,6 +53,46 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
+    * The onchange handler that wil show/hide chart containers, by changing
+    * the CSS class of the element. It also updates the overlay span that
+    * mimics a dropdown.
+    * @param {Event} event - The onchange event fired by the dropdown menu
+    */
+  let changeEventHandler = (event) => {
+  // Iterate over the chart containers
+  for (let div of chartHolder.children) {
+    // If the selection event macthes the chart container hide/unhide it
+    if (div.id === prefixId + event.target.value) {
+      // Unhide
+      div.classList.remove('hidden');
+      // Reflow
+      Highcharts.charts.map((chart) => {
+        // Todo: improve reflow, only for the visible div?
+        chart.reflow();
+      });
+    } else {
+      div.classList.add('hidden');
+    }
+  }
+  // set chart title to overlay dropdown
+   labelElem.innerHTML = dropdownElem.selectedOptions[0].innerText;
+  };
+
+  /**
+   * Create an option element set the chart-hash as value, so we have a link
+   * between option select and the div we have to unhide later on.
+   * @param {string} chartHash
+   * @param {string} chartTitle
+   * @returns {HTMLOptionElement}
+   */
+  let createOptionForDropdown = function(chartHash, chartTitle) {
+    let option = document.createElement('option');
+    option.value = chartHash;
+    option.innerHTML = chartTitle;
+    return option;
+  };
+
+  /**
    * Function for adding options to the dropdown, select element reflecting the
    * charts, based upon chart titles of the charts. Also binding a
    * change event handler to the dropdown element for hide/unhide of the
@@ -62,58 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let fillOptionsForDropdownElement = (dropdownElem) => {
 
     let labelElem = document.getElementsByClassName('label')[0];
-
-    /**
-    * The onchange handler that wil show/hide chart containers, by changing
-    * the CSS class of the element. It also updates the overlay span that
-    * mimics a dropdown.
-    * @param {Event} event - The onchange event fired by the dropdown menu
-    */
-    let changeEventHandler = (event) => {
-      // Iterate over the chart containers
-      for (let div of chartHolder.children) {
-        // If the selection event macthes the chart container hide/unhide it
-        if (div.id === prefixId + event.target.value) {
-          // Unhide
-          div.classList.remove('hidden');
-          // Reflow
-          Highcharts.charts.map((chart) => {
-            // Todo: improve reflow, only for the visible div?
-            chart.reflow();
-          });
-        } else {
-          div.classList.add('hidden');
-        }
-      }
-
-      // set chart title to overlay dropdown
-      labelElem.innerHTML = dropdownElem.selectedOptions[0].innerText;
-    };
-
-    /**
-     * Create an option element set the chart-hash as value, so we have a link
-     * between option select and the div we have to unhide later on.
-     * @param {string} chartHash
-     * @param {string} chartTitle
-     */
-    let createOptionForDropdown = function(chartHash, chartTitle) {
-      let option = document.createElement('option');
-      option.value = chartHash;
-      option.innerHTML = chartTitle;
-      dropdownElem.appendChild(option);
-    };
-
-    /** Now the charts have been loaded, loop over the div's to retrieve chart
-     * titles and create succesively option elements for the dropdown
-     */
+    
+    //Now the charts have been loaded, loop over the div's to retrieve chart
+    //titles and create succesively option elements for the dropdown
     for (let chartDiv of chartHolder.children) {
       let hash = chartDiv.id.substr(prefixId.length);
-
       // search for the chart title, get the first element found.
-
       let title = chartDiv.querySelector('text.highcharts-title')
         .lastElementChild.innerHTML;
-      createOptionForDropdown(hash, title);
+      let option = createOptionForDropdown(hash, title);
+      // add the option element to the dropwdown
+      dropdownElem.appendChild(option);
     }
 
     // set selected option
@@ -148,11 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // accordingly
   recursiveFunctionWithTimeout(
     50,
-    () => {
-      return checkNumberOfNodes(hashArr.length, chartHolder,
-        'text.highcharts-title');
-    },
-    () => { fillOptionsForDropdownElement(dd); },
+    () => checkNumberOfNodes(hashArr.length, chartHolder,'text.highcharts-title'),
+    () => fillOptionsForDropdownElement(dd),
     100
   );
 
