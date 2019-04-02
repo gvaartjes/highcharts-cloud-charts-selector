@@ -2,12 +2,14 @@
 /*global Highcharts*/
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Here go your chart hashes
+  // Place here your chart hashes
   let hashArr = ['GBanZitX-', '7wUBl0Fdj', 'zh90QUuF5'];
   // Element holding all divs where the charts get loaded to
   let chartHolder = document.querySelector('.chart-holder');
   // The dropdown element
   let dd = document.querySelector('select[name="dd"]');
+  // Div that is mimicing the actual dropdown element
+  let labelElem = document.getElementsByClassName('label')[0];
   // prefix of the Highcharts chart containers
   let prefixId = 'highcharts-';
 
@@ -74,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       div.classList.add('hidden');
     }
   }
-  // set chart title to overlay dropdown
-   labelElem.innerHTML = dropdownElem.selectedOptions[0].innerText;
+    // set chart title to overlay dropdown
+    labelElem.innerHTML = dropdownElem.selectedOptions[0].innerText;
   };
 
   /**
@@ -100,8 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {Element} dropdownElem
    */
   let fillOptionsForDropdownElement = (dropdownElem) => {
-
-    let labelElem = document.getElementsByClassName('label')[0];
     
     //Now the charts have been loaded, loop over the div's to retrieve chart
     //titles and create succesively option elements for the dropdown
