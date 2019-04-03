@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Place here your chart hashes
-  let hashArr = ['GBanZitX-', '7wUBl0Fdj', 'zh90QUuF5'];
+  let hashArr = ['ByFBJHnyQ', 'rJr1gB3Jm', 'r16tyUhyX'];
   // Element holding all divs where the charts get loaded to
   let chartHolder = document.querySelector('.chart-holder');
   // The dropdown element
