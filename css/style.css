@@ -19,16 +19,25 @@ div#container {
   display: block;
   background-color: #424242;
   padding: 15px;
+  min-width: 300px;
 }
 
 .chart-holder {
   margin-top: 25px;
-  width: 80%;
+  width: 90%;
   align-content: center;
 }
 
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 600px) {
+  .chart-holder {
+    width: 100%;     
+    margin-left: 0%;
+  }
+}
+
 .chart-holder div{
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .inner {
