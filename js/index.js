@@ -61,23 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
     * @param {Event} event - The onchange event fired by the dropdown menu
     */
   let changeEventHandler = (event) => {
-  // Iterate over the chart containers
-  for (let div of chartHolder.children) {
-    // If the selection event macthes the chart container hide/unhide it
-    if (div.id === prefixId + event.target.value) {
-      // Unhide
-      div.classList.remove('hidden');
-      // Reflow
-      Highcharts.charts.map((chart) => {
-        // Todo: improve reflow, only for the visible div?
-        chart.reflow();
-      });
-    } else {
-      div.classList.add('hidden');
+    // Iterate over the chart containers
+    for (let div of chartHolder.children) {
+      // If the selection event macthes the chart container hide/unhide it
+      if (div.id === prefixId + event.target.value) {
+        // Unhide
+        div.classList.remove('hidden');
+        // Reflow
+        Highcharts.charts.map((chart) => {
+          // Todo: improve reflow, only for the visible div?
+          chart.reflow();
+        });
+      } else {
+        div.classList.add('hidden');
+      }
     }
-  }
     // set chart title to overlay dropdown
-    labelElem.innerHTML = dropdownElem.selectedOptions[0].innerText;
+    labelElem.innerHTML = dd.selectedOptions[0].innerText;
   };
 
   /**
