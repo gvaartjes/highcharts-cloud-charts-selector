@@ -5,10 +5,6 @@ A dropdown selector for showing multiple charts one by one, served from Highchar
 1. `npm install`
 2. `npm start`
 
----
-typora-root-url: ./image
----
-
 # Building a chart selector widget for storytelling.
 In a data-driven culture, you want to back up your story with some hard facts. With the help of charts, readers can quickly interpret data en spot trends. If you need to display many charts in your article, and want to avoid too much scrolling on your page, consider displaying multiple charts by selecting a dropdown list. This would also be helpful for making charting dashboards responsive, when there is little screen real estate available. In this article, I will walk you through the steps for building a dropdown list, that displays charts one by one.
 
@@ -27,7 +23,7 @@ For the purpose of this article, I created three charts.
 
 These charts will be added to my webpage, having each chart in its own enclosing `<div>` element. The div elements are initially hidden with the `display:none` CSS property. Listening to the `onchange` event of the dropdown list, will display the corresponding chart and hide all other charts. See the below wireframe to get an idea of how it should look like.
 
-![Wireframe-selector](/Wireframe-selector.png)
+![Wireframe-selector](/wireframe-selector.png)
 
 
 
