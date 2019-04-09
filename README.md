@@ -201,15 +201,5 @@ let changeEventHandler = (event) => {
 ## Have fun! 
 I hope you got the gist of building this widget for displaying charts with a dropdown list. 
 
-I would encourage you to play with it on [Glitch](https://highcharts-cloud-selector.glitch.me/). You can remix my demo and even improve it. You can, for example, use it as a starting point for coding a charting carousel with [Bootstrap Carousel](https://getbootstrap.com/docs/4.0/components/carousel/)!  (Maybe something for the next blog post?)
+I would encourage you to play with it on [Glitch](https://glitch.com/~highcharts-cloud-selector). You can remix my demo and even improve it. You can, for example, use it as a starting point for coding a charting carousel with [Bootstrap Carousel](https://getbootstrap.com/docs/4.0/components/carousel/)!  (Maybe something for the next blog post?)
 
-<!-- Copy and Paste Me -->
-
-<div class="glitch-embed-wrap" style="height: 100%; width: 100%;">
-  <iframe
-    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
-    src="https://glitch.com/embed/#!/embed/highcharts-cloud-selector?path=style.css&previewSize=100&previewFirst=true"
-    alt="highcharts-cloud-selector on Glitch"
-    style="height: 100%; width: 100%; border: 0;">
-  </iframe>
-</div>
